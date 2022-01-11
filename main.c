@@ -8,8 +8,8 @@
 struct movie {
     char *title;
     int year;
-    char *language[100]; 
-    double *ratingValue;
+    char *language[5]; 
+    float ratingValue;
     struct movie *next;
 };
 
@@ -34,14 +34,34 @@ struct movie *createMovie(char *currLine) {
     //int num = atoi(token);
     //printf("%d\n", year);
     currMovie -> year = atoi(token);
-    printf("%d\n", (*currMovie).year);
+    //printf("%d\n", (*currMovie).year);
     
+    int i=0;
+    token = strtok_r(NULL, "[;]", &saveptr);
 
-    // token = strtok_r(NULL, "\n", &saveptr);
-    // currMovie -> ratingValue = calloc(1, sizeof(double));
-    // strcpy(currMovie -> ratingValue, token);
+    //printf("%s\n", token);
+    //(*token != ',')
+    while (*token != ',') {
+        //printf("%s\n", token);
+        if (*token != ',') {
+            currMovie -> language[i] = token;
+            token = strtok_r(NULL, ";]", &saveptr);
+            i = i+1;
+        } 
+    }
 
-    // currMovie -> next = NULL;
+    // printf("\n");
+    // printf("%s\n", (*currMovie).language[0]);
+    // printf("%s\n", (*currMovie).language[1]);
+    // printf("%s\n", (*currMovie).language[2]);
+    // printf("%s\n", (*currMovie).language[3]);
+    // printf("%s\n", (*currMovie).language[4]);
+    
+    saveptr = token;
+    token = strtok_r(NULL, ",\r\n", &saveptr);
+    currMovie -> ratingValue = atof(token);
+
+    currMovie -> next = NULL;
     return currMovie;
 };
 
@@ -86,18 +106,23 @@ struct movie *processFile(char *filePath) {
 
 };
 
+int main() {
+    struct movie *list = processFile("file.txt");
+    return 0;
+}
+
 
 //Reminders: user-entered file name is stored at argv[1]
-int main(int argc, char *argv[]) {
+// int main(int argc, char *argv[]) {
 
-    //If a file name is not provided, return failure 
-    if (argc < 2) {
-        printf("You must provide the name of the file to process e.g., movies movies_sample_1.txt.\n");
-        exit(1);
-    }; 
+//     //If a file name is not provided, return failure 
+//     if (argc < 2) {
+//         printf("You must provide the name of the file to process e.g., movies movies_sample_1.txt.\n");
+//         exit(1);
+//     }; 
 
-    //When your program starts it must read all data from the file and process it
-    struct movie *list = processFile(argv[1]);
-    return 0;
+//     //When your program starts it must read all data from the file and process it
+//     struct movie *list = processFile(argv[1]);
+//     return 0;
 
-}
+// }
