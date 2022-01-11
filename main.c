@@ -67,7 +67,7 @@ struct movie *createMovie(char *currLine) {
 
 //Passing filePath as parameter 
 //movieFile is a pointer to type file; allows communication between file and program
-struct movie *processFile(char *filePath) {
+struct movie *processFile(char *filePath, int *movie_count) {
     //Initialize the file pointer 
     FILE *movieFile = fopen(filePath, "r"); 
     
@@ -96,18 +96,20 @@ struct movie *processFile(char *filePath) {
                 tail = newNode;
             }
             count += 1;
+            *movie_count = count-1;       
         } else {
             count += 1;
         }
     }
     free(currLine);
     fclose(movieFile);
-    return 0;
-
+    return head;
 };
 
 int main() {
-    struct movie *list = processFile("file.txt");
+    int movie_count=0;
+    struct movie *list = processFile("file.txt", &movie_count);
+    printf("Processed file file.txt and parsed data for %d movies", movie_count);
     return 0;
 }
 
