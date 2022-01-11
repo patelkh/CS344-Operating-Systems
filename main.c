@@ -2,16 +2,41 @@
 #include <stdlib.h> //Need for dynamic memory allocation
 #include <string.h> //Needed to access string functions
 
-
-
 //Structure for movie information 
 struct movie {
     char *title;
     int year;
     char *language[5]; 
-    float ratingValue;
+    double ratingValue;
     struct movie *next;
 };
+
+int displayMenu(){
+    printf("1. Show movies released in the specified year\n");
+    printf("2. Show highest rated movie for each year\n");
+    printf("3. Show the title and year of release of all movies in a specific language\n");
+    printf("4. Exit from the program\n\n");
+    return 0;
+};
+
+
+int displayMovieByYear(struct movie *linkedList, int year) {
+    int count =0;
+    while (linkedList != NULL) {
+        if (linkedList -> year == year) {
+            printf("%s\n", linkedList -> title);
+            count = count+1;
+        }
+        linkedList = linkedList -> next; 
+    }
+    if (count == 0) {
+        printf("No data about movies released in the year %d", year);
+    }
+    printf("\n");
+    return 0;
+};
+
+
 
 //Parse the string which is comma delimited and create movie structure 
 struct movie *createMovie(char *currLine) {
@@ -59,7 +84,7 @@ struct movie *createMovie(char *currLine) {
     
     saveptr = token;
     token = strtok_r(NULL, ",\r\n", &saveptr);
-    currMovie -> ratingValue = atof(token);
+    currMovie -> ratingValue = strtod(token, NULL);
 
     currMovie -> next = NULL;
     return currMovie;
@@ -108,8 +133,34 @@ struct movie *processFile(char *filePath, int *movie_count) {
 
 int main() {
     int movie_count=0;
-    struct movie *list = processFile("file.txt", &movie_count);
-    printf("Processed file file.txt and parsed data for %d movies", movie_count);
+    struct movie *linkedList = processFile("file.txt", &movie_count);
+    printf("Processed file file.txt and parsed data for %d movies.\n", movie_count);
+
+    int choice=1;
+    while (choice != 4) {
+        printf("\n");
+        int menu = displayMenu();
+        printf("Enter a choice from 1 to 4: ");
+        scanf("%d", &choice);
+
+        if (choice == 1) {
+            int year; 
+            printf("Enter the year for which you want to see movies: ");
+            scanf("%d", &year);
+            displayMovieByYear(linkedList, year);
+            choice = 0;
+        }
+        else if (choice == 2) {
+            choice = 0;
+        } else if (choice == 3) {
+            choice = 0;
+        } else if (choice == 4) {
+        } else {
+            printf("Invalid choice, try again\n");
+            choice = 0;   
+        }
+    }
+    
     return 0;
 }
 
