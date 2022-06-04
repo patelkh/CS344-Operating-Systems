@@ -15,7 +15,9 @@ Special processing is performed if fewer than 24 bits are available at the end o
 EXAMPLE:
 
 Input: foobar
+
 Output: Zm9vYmFy
+
 where foo = Zm9v and bar = YmFy
 
 INSTRUCTIONS: 
