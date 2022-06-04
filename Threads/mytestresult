@@ -1,0 +1,50 @@
+Attention: This is an AUTOMATIC grading script result. Regrade requests go to a randomly selected TA: deledani@oregonstate.edu
+
+
+Input files are 1000 lines long, with a STOP line on line 46, 47, 48, 49, or 50
+If your program times out on every test, you did not implement STOP correctly
+
+TEST 1: Line separators are correctly replaced by spaces. (4 points)
+  ./line_processor <newline_test
+  Test Passed!
+  Total: 4/4 (4/4)
+
+TEST 2: Pair of plus signs are correctly replaced by the caret symbol. (4 points)
+  ./line_processor <plus_test
+  Test Passed!
+  Total: 8/8 (4/4)
+
+TEST 3: Output lines are always 80 character long. (4 points)
+  ./line_processor <wrap_test
+  Test Passed!
+  Total: 12/12 (4/4)
+
+TEST 4: The program does not write anything to the standard output other than the complete lines
+ it can write before receiving the stop-processing line. (4 points)
+        We test this by feeding in a short input file that has less than 80 characters before th
+        e STOP line.
+  ./line_processor <short_test
+  Test Passed!
+  Total: 16/16 (4/4)
+
+TEST 5: The program terminates after writing all the 80 character lines it can write. (4 points)
+        We test this by simulating a massive file with a STOP line early on. Your program should
+         exit when it reaches the STOP line, not continue processing or wait on input.
+  ./line_processor < <(cat big_test; sleep 10)
+  Test Passed! Exited with status 0
+  Total: 20/20 (4/4)
+
+TEST 6: A line of output is written as soon as 80 characters are available. (15 points)
+        We test this by feeding some input, and then going to sleep. Your process will timeout a
+        nd we should see partial output and a timed-out status.
+  ./line_processor < <(head newline_test; sleep 10)
+  Test Passed!
+  Total: 35/35 (15/15)
+
+TEST 7: Testing threading implementation. (secret tests) (65 points)
+  ./line_processor < <(head newline_test; echo STOP;)
+  Test Passed! Exited with status 0
+  Total: 100/100 (65/65)
+
+Never crashed!
+Final score: 100/100
