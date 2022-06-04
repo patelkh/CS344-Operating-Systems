@@ -6,6 +6,18 @@ TEST 1: Compiling with flags (5 points)
   gcc -std=c99 -o /tmp/tmp.blFWBilo6y/archive /nfs/stak/users/patelkh/cs-344/archive/archive.c
   COMPILATION SUCCEEDED (Exited: 0)
   Total: 5/5 (5/5)
+  
+ TEST 2: Valgrind test (5 points)
+   Creating test setup
+      | .
+      | ├── empty
+      | └── test/
+      |     └── dir/
+      |         └── file
+      | 
+      | 2 directories, 2 files
+   Valgrind found errors on packing. (Exited: 1)
+   Total: 5/10 (0/5)
 
 TEST 3: Error on invalid (empty) filename (5 points)
   /tmp/tmp.blFWBilo6y/archive  ''
