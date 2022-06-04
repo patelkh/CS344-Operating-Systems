@@ -1,6 +1,7 @@
 TITLE: Base64 Encoder
 
 BACKGROUND: 
+
 The Base 64 encoding is designed to represent arbitrary sequences of octets in a form that allows the use of both upper- and lowercase letters but that need not be human readable.
 
 A 65-character subset of US-ASCII is used, enabling 6 bits to be represented per printable character.  (The extra 65th character, "=", is used to signify a special processing function.)
@@ -12,11 +13,13 @@ Each 6-bit group is used as an index into an array of 64 printable characters.  
 Special processing is performed if fewer than 24 bits are available at the end of the data being encoded.  A full encoding quantum is always completed at the end of a quantity.  When fewer than 24 input bits are available in an input group, bits with value zero are added (on the right) to form an integral number of 6-bit groups.  Padding at the end of the data is performed using the '=' character.
 
 EXAMPLE:
+
 Input: foobar
 Output: Zm9vYmFy
 where foo = Zm9v and bar = YmFy
 
 INSTRUCTIONS: 
+
 Write a C program that encodes a stream of data into base64 format. Base<N> formats are a way of converting binary data into ASCII text. Base<N> is widely used in web services to transmit binary data, such as cryptographic signatures, over plaintext content headers. It's also used the same way for email (ever seen -----BEGIN PGP PUBLIC KEY BLOCK------ in an email?).
 Encoded lines wrap every 76 characters. 
 With no FILE or when FILE is -, read from standard input. 
@@ -30,5 +33,6 @@ Implementations MUST NOT not add line feeds to base encoded data unless the spec
 However, the specification above DOES explicitly direct you to add line feeds after 76 characters, so do not worry about this subsection of the RFC conflicting with the assignment.
   
 COMPILE:
+	
 gcc -std=c99 -o base64enc base64enc.c (or)
 gcc -std=c99 -Wall -Wextra -Wpedantic -Werror -o base64enc base64enc.c
