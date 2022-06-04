@@ -1,6 +1,4 @@
-TITLE: 
-
-Archive
+TITLE: Archive
 
 INSTRUCTIONS:
 
@@ -10,6 +8,7 @@ If FILE is a directory, add all of its contents to the archive file, recursively
 When no FILE argument is specified, unpack the ARCHIVE file. 
 
 The archive format is in the form [(filename length):(filename)[children...](file size):(file contents)]....
+
 For example, the file "testfile" which contains the text "hello world!\n", would be endcoded as:
 
 8:testfile13:hello world!
