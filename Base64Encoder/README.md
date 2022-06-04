@@ -29,6 +29,6 @@ Implementations MUST NOT not add line feeds to base encoded data unless the spec
 
 However, the specification above DOES explicitly direct you to add line feeds after 76 characters, so do not worry about this subsection of the RFC conflicting with the assignment.
   
-COMPILE
+COMPILE:
 gcc -std=c99 -o base64enc base64enc.c (or)
 gcc -std=c99 -Wall -Wextra -Wpedantic -Werror -o base64enc base64enc.c
