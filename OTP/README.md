@@ -1,6 +1,6 @@
 TITLE: One-Time Pads
 
-Use the wikipedia page One-Time Pads (Links to an external site.) as your primary reference on One-Time Pads (OTP).
+Use the wikipedia page One-Time Pads as your primary reference on One-Time Pads (OTP): https://en.wikipedia.org/wiki/One-time_pad
 
 DEFINITIONS
 
